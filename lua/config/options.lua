@@ -3,9 +3,9 @@ local opt = vim.opt
 opt.number = true               -- Line numbers
 -- opt.relativenumber = true       -- Relative line numbers
 opt.cursorline = true           -- Highlight current line
-opt.wrap = false                -- Wrap lines
-opt.scrolloff = 10              -- Keep 10 lines above/below cursor
-opt.sidescrolloff = 8           -- Keep 8 columns left/right of cursor
+opt.wrap = true                 -- Wrap lines
+opt.scrolloff = 8               -- Keep 'n' lines above/below cursor
+opt.sidescrolloff = 8           -- Keep 'n' columns left/right of cursor
 
 -- Indentation
 opt.tabstop = 4                 -- Tab width
@@ -39,6 +39,7 @@ opt.synmaxcol = 300             -- Syntax highlightint limit
 -- opt.ruler = false               -- Disable the default ruler
 opt.virtualedit = "block"       -- Allow cursor to move where there is no text in visual block mode
 opt.winminwidth = 5             -- Minimum window width
+opt.colorcolumn = "90"          -- Have a visual indication a this column, to hint where to wrap lines
 
 -- File handling#
 opt.backup = false              -- Don't create backup files
@@ -52,6 +53,7 @@ opt.timeoutlen = vim.g.vscode and 1000 or 300  -- Lower than default (1000) to q
 opt.ttimeoutlen = 0             -- Key code timeout
 opt.autoread = true             -- Auto reaload files changed outside vim
 opt.autowrite = false           -- Auto save off
+-- opt.isfname:append("@-@")       -- Allow "@" to be in file names
 
 -- Behavior settings
 opt.hidden = true               -- Allow hidden buffers
