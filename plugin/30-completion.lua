@@ -22,8 +22,12 @@ vim.api.nvim_create_autocmd("InsertEnter", {
                 use_nvim_cmp_as_default = true,
             },
             completion = {
+                ghost_text = {
+                    enabled = true,
+                    show_with_menu = false,
+                },
                 menu = {
-                    auto_show = true,
+                    auto_show = false,
                     border = "rounded",
                     draw = {
                         columns = {
