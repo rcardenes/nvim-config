@@ -98,8 +98,7 @@ end)
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
 -- File navigation
-map("n", "<leader>pv", vim.cmd.Ex, { desc = "Bring up the file browser (Netwr)" })
-
+map("n", "<leader>pv", ":Ex<cr>", { desc = "Bring up the file browser (Netwr)" })
 
 --
 -- DEVELOPMENT TOOLS
