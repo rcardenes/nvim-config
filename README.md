@@ -20,8 +20,8 @@ In the past I hadn't paid much attention to the whole config, so this time
 I decided to follow a more step-by-step and detailed instructions guide,
 to get a better idea of what's going on.
 
-This time I followed Duy NG's [My Journey from IDEs to Neovim](tduyng.com/blog/my-neovim-story)
+This time I followed Duy NG's [My Journey from IDEs to Neovim](https://tduyng.com/blog/my-neovim-story)
 to setup the basics and some of the plugins. The blog starts talking about
 the background and motivation for moving into Neovim. If you're not interested
-in that part, skip straight to [part 2](tduyng.com/blog/neovim-basic-setup)
+in that part, skip straight to [part 2](https://tduyng.com/blog/neovim-basic-setup)
 for the config itself.
