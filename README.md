@@ -14,6 +14,28 @@ related errors. These will disappear as soon as the nvim-tresitter plugin
 is installed. I'm not sure if this chicken-and-egg problem is intended, or
 I missed something, but just don't freak out if it happens.
 
+## Dependencies
+
+There are at least two tools you'll need to install to make this config work:
+
+* Tree-sitter CLI
+* ripgrep
+
+I have rust available in my system, so I just added them with cargo:
+
+```
+  $ cargo install ripgrep
+  $ cargo install tree-sitter-cli
+```
+
+There are other ways to manage those dependencies, you pick whatever
+is best for you.
+
+Additionally, `plugins/99-ai.lua` deals with installing an managing some
+LLM-based tool. At the moment it's straight Claude Code, but I've commented
+out [CodeCompanion](https://github.com/olimorris/codecompanion.nvim), which I was using with Copilot. You might
+need some editing there or installing additional software to make that work.
+
 ### Acknowledgements
 
 In the past I hadn't paid much attention to the whole config, so this time
