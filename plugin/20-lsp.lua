@@ -5,28 +5,83 @@ vim.pack.add {
 local enabled_servers = {
     "lua_ls",
     "clang",
-    "rust_analyzer",
+--    "rust_analyzer",
     "basedpyright",
 }
 
 vim.lsp.enable(enabled_servers)
 
-vim.lsp.config.lua_ls = {
-    settings = {
-        diagnostics = {
-            globals = {
-                'vim',
-                'require',
-            },
-        },
-    }
-}
+-- vim.lsp.config.lua_ls = {
+--     settings = {
+--         diagnostics = {
+--             globals = {
+--                 'vim',
+--                 'require',
+--             },
+--         },
+--     }
+-- }
+
+-- vim.lsp.config.rust_analyzer = {
+--     settings = {
+--         ["rust_analyzer"] = {
+--             typeHints = { enable = true },                          -- Variable type hints
+--             chainingHints = { enable = true },                      -- Method chain type hints
+--             closureReturnTypeHints = { enable = "never" },          -- "never" | "always"
+--             closureCaptureHints = { enable = false },               -- Closure capture hints
+--             -- Parameter related
+--             parameterHints = { enable = true },                     -- Function parameter hints
+--             -- Brace related
+--             closingBraceHints = { enable = true, minLines = 25 },   -- Closing brace hints
+--             -- Other
+--             bindingModeHints = { enable = false },                  -- Binding mode hints
+--             discriminantHints = { enable = "never" },               -- Enum discriminant hints
+--             expressionAdjustmentHints = { enable = "never" },       -- Type adjustment hints
+--             implicitDrops = { enable = false },                     -- Implicit drop hints
+--             lifetimeElisionHints = { enable = "never" },            -- Lifetime elision hints
+--             genericParameterHints = {
+--                 type = { enable = false },
+--                 lifetime = { enable = false },
+--                 const = { enable = false },
+--             },
+--         },
+--     },
+-- }
 
 local on_attach = function(client, bufnr)
+--    require("inlay-hints").on_attach(client, bufnr)
+
+    local sev = vim.diagnostic.severity
+
     vim.diagnostic.config({
-        virtual_text = true,
         underline = false,
-        float = true,
+        severity_sourt = true,
+        update_in_insert = false, -- less flicker
+        float = {
+            border = "rounded",
+            source=true,
+        },
+        -- keep signs & virtual text, but tune them as you like
+        signs = {
+            text = {
+                [sev.ERROR] = " ",
+                [sev.WARN] = " ",
+                [sev.INFO] = " ",
+                [sev.HINT] = "󰌵 ",
+            },
+        },
+        virtual_text = {
+            spacing = 4,
+            source = "if_many",
+            prefix = "●",
+        },
+        -- NEW in 0.11 — dim whole line
+        linehl = {
+            [sev.ERROR] = "DiagnosticErrorLine",
+            [sev.WARN] = "DiagnosticWarnLine",
+            [sev.INFO] = "DiagnosticInfoLine",
+            [sev.HINT] = "DiagnosticHintLine",
+        },
     }, bufnr)
 
     local function virt_line_diagnostics(jumpCount)
@@ -34,9 +89,8 @@ local on_attach = function(client, bufnr)
 
         vim.diagnostic.jump { count = jumpCount }
 
-        local text_cond = vim.diagnostic.config().virtual_text
         vim.diagnostic.config {
-            virtual_text = false,
+            -- virtual_text = false,
             virtual_lines = { current_line = true, current_line_only = true },
         }
     end
